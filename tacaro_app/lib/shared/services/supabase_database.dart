@@ -26,7 +26,8 @@ class SupabaseDatabase implements AppDatabase {
       required String name}) async {
     final response = await client.auth.signUp(email, password);
     if(response.error == null){
-      final user = UserModel.fromMap(response.user!.toJson());
+      final user = UserModel(email: email, id: response.user!.id, name: name);
+      await createUser(user);
       return user;
     } else {
       throw Exception(response.error?.message ?? "Não foi possível criar conta");
@@ -37,10 +38,32 @@ class SupabaseDatabase implements AppDatabase {
   Future<UserModel> login({required String email, required String password}) async {
     final response = await client.auth.signIn(email: email, password: password);
     if(response.error == null){
-      final user = UserModel.fromMap(response.user!.toJson());
+      final user = await getUser(response.user!.id);
       return user;
     } else {
       throw Exception(response.error?.message ?? "Não foi possível realizar o login");
+    }
+  }
+
+  @override
+  Future<UserModel> createUser(UserModel user) async {
+    final response = await client.from("users").insert(user.toMap()).execute();
+    if (response.error == null) {
+      return user;
+    } else {
+      throw Exception("Não foi possível cadastrar o usuário");
+    }
+  }
+
+  @override
+  Future<UserModel> getUser(String id) async {
+    final response = await client.from("users").select().filter("id", "eq", id).execute();
+    if(response.error == null){
+
+    final user = UserModel.fromMap(response.data[0]);
+    return user;
+    } else {
+      throw Exception("Não foi possível buscar o usuário");
     }
   }
 }

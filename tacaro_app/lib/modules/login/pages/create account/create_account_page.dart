@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+
+
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/modules/login/repositories/login_repository_impl.dart';
 import 'package:tacaro_app/shared/services/app_database.dart';
@@ -25,10 +27,52 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     controller = CreateAccountController(repository: LoginRepositoryImpl(database: AppDatabase.instance));
     controller.addListener(() {
       controller.state.when(
-          success: (value) => Navigator.pushNamed(context, "/login"),
-          error: (message, _) => scaffoldKey.currentState!.showBottomSheet(
-              (context) => BottomSheet(
-                  onClosing: () {}, builder: (context) => Text(message))),
+          success: (value) => Navigator.pop(context),
+          error: (message, _) => showModalBottomSheet<void>(
+            backgroundColor: AppTheme.colors.background,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20))),
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 250,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Icon(
+                          Icons.error,
+                          color: AppTheme.colors.badColor,
+                          size: 80.0,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          message, 
+                          style: AppTheme.textStyles.buttonBoldTextColor),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Button(label: 'Fechar', 
+                        type: ButtonType.outline, 
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                          
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
           loading: () => print("Loading..."),
           orElse: () {});
     });
@@ -98,6 +142,13 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         ? null
                         : "Digite uma senha com no mínimo 6 caracteres",
                     obscure: true,
+                  ),
+                  SizedBox(
+                    height: 5
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: Text("•  Sua senha deve conter no mínimo 6 caracteres", style: AppTheme.textStyles.instructions),
                   ),
                   SizedBox(
                     height: 14,

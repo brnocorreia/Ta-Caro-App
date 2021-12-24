@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:tacaro_app/shared/models/user_model.dart';
 import 'package:tacaro_app/shared/utils/app_state.dart';
 
 import '../../repositories/login_repository.dart';
@@ -41,10 +42,10 @@ class CreateAccountController extends ChangeNotifier {
     if (validate()) {
       try {
         update(AppState.loading());
-        await repository.createAccount(email: _email, password: _password, name: _name,);
-        update(AppState.success<String>("Conta criada"));
+        final response = await repository.createAccount(email: _email, password: _password, name: _name,);
+        update(AppState.success<UserModel>(response));
       } catch (e) {
-        update(AppState.error("Não foi possível criar a conta"));
+        update(AppState.error(e.toString()));
       }
     }
   }

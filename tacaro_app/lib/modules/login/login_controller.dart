@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:tacaro_app/shared/models/user_model.dart';
 import 'package:tacaro_app/shared/utils/app_state.dart';
 
 import 'repositories/login_repository.dart';
@@ -39,11 +40,11 @@ class LoginController extends ChangeNotifier {
       try {
         update(AppState.loading());
         // Chamada do backend
-        await repository.login(email: _email, password: _password);
-        update(AppState.success<String>("Usuário logado!"));
+        final response = await repository.login(email: _email, password: _password);
+        update(AppState.success<UserModel>(response));
       } catch (e) {
         update(AppState.error(
-          "Não foi possível realizar o login",
+          e.toString(),
         ));
       }
     }
