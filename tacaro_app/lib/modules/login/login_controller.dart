@@ -3,12 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/shared/utils/app_state.dart';
 
+import 'repositories/login_repository.dart';
+
 class LoginController extends ChangeNotifier {
+  final LoginRepository repository;
   AppState state = AppState.empty();
 
   final formKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
+
+  LoginController(this.repository);
 
   void onChanged({String? email, String? password}) {
     _email = email ?? _email;
@@ -34,7 +39,7 @@ class LoginController extends ChangeNotifier {
       try {
         update(AppState.loading());
         // Chamada do backend
-        await Future.delayed(Duration(seconds: 4));
+        await repository.login(email: _email, password: _password);
         update(AppState.success<String>("Usuário logado!"));
       } catch (e) {
         update(AppState.error(

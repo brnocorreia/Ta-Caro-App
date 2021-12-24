@@ -1,11 +1,12 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:tacaro_app/modules/login/repositories/login_repository_impl.dart';
+import 'package:tacaro_app/shared/services/app_database.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
 import 'package:tacaro_app/shared/widgets/button.dart';
 import 'package:tacaro_app/shared/widgets/input_text.dart';
 import 'package:validators/validators.dart';
-
 import 'create_account_controller.dart';
 
 class CreateAccountPage extends StatefulWidget {
@@ -16,11 +17,12 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
-  final controller = CreateAccountController();
+  late final CreateAccountController controller;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
+    controller = CreateAccountController(repository: LoginRepositoryImpl(database: AppDatabase.instance));
     controller.addListener(() {
       controller.state.when(
           success: (value) => Navigator.pushNamed(context, "/login"),
@@ -115,7 +117,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         ],
                       ),
                       orElse: () => Button(
-                        label: "Entrar",
+                        label: "Criar conta",
                         onTap: () {
                           controller.create();
                         },

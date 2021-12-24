@@ -1,0 +1,27 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "tacaro_app",
+            "cwd": "tacaro_app",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "SUPABASEURL=https://fubgeviroeqmjsnapqdd.supabase.co", 
+                 "--dart-define",
+                "SUPABASEKEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDM3MTg2MywiZXhwIjoxOTU1OTQ3ODYzfQ.Y-ijBGhCzNVjbDSj-MjVRmG9WyKiiIkBtR7evRoSIY8", 
+            ]
+        },
+        {
+            "name": "tacaro_app (profile mode)",
+            "cwd": "tacaro_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        }
+    ]
+}
