@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
 import 'package:tacaro_app/shared/widgets/button.dart';
 import 'package:tacaro_app/shared/widgets/input_text.dart';
+import 'package:validators/validators.dart';
+
+import 'create_account_controller.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({ Key? key }) : super(key: key);
@@ -11,6 +14,9 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
+
+  final controller = CreateAccountController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,37 +27,56 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Criando uma conta", style: AppTheme.textStyles.title),
-            SizedBox(
-              height: 10,
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Criando uma conta", style: AppTheme.textStyles.title,),
+              SizedBox(
+                height: 10,
+                ),
+              Text("Mantenha seus gastos em dia", style: AppTheme.textStyles.subtitle),
+              SizedBox(
+                height: 38,
+                ),
+              InputText(
+                label: "NOME", 
+                hint: "Digite o seu nome completo",
+                onChanged: (value) => controller.onChanged(name:value),
+                validator: (value) => value.isNotEmpty ? null : "Digite seu nome completo",
+                ),
+              SizedBox(
+                height: 18,
+                ),
+              InputText(
+                label: "EMAIL", 
+                hint: "Digite o seu e-mail",
+                onChanged: (value) => controller.onChanged(email:value),
+                validator: (value) => isEmail (value) ? null : "Digite um e-mail válido!",
+                ),
+              SizedBox(
+                height: 18,
+                ),
+              InputText(
+                label: "SENHA", 
+                hint: "Digite a sua senha",
+                onChanged: (value) => controller.onChanged(password:value),
+                validator: (value) => value.length >= 6 ? null : "Digite uma senha com no mínimo 6 caracteres",
+                obscure: true,
+                ),
+              SizedBox(
+                height: 14,
               ),
-            Text("Mantenha seus gastos em dia", style: AppTheme.textStyles.subtitle),
-            SizedBox(
-              height: 38,
-              ),
-            InputText(label: "NOME", hint: "Digite o seu nome completo"),
-            SizedBox(
-              height: 18,
-              ),
-            InputText(label: "EMAIL", hint: "Digite o seu e-mail"),
-            SizedBox(
-              height: 18,
-              ),
-            InputText(label: "SENHA", hint: "Digite a sua senha"),
-            SizedBox(
-              height: 14,
-            ),
-            Button(
-              label: "Criar conta", 
-              onTap: () { 
-              
-              },
-             ),
-          ],
+              Button(
+                label: "Criar conta", 
+                onTap: () { 
+                  controller.create();
+                },
+               ),
+            ],
+          ),
         ),
       ),
     );
