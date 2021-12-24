@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/shared/widgets/button.dart';
 import 'package:tacaro_app/shared/widgets/input_text.dart';
@@ -21,22 +23,30 @@ class _LoginPageState extends State<LoginPage> {
             Image.asset("assets/images/logo.png",
             width: 200,
             ),
-            InputText(label: "E-mail", hint: "Digite o seu e-mail"),
+            InputText(label: "EMAIL", hint: "Digite o seu e-mail"),
             SizedBox(
               height: 18,
               ),
-            InputText(label: "Senha", hint: "Digite a sua senha"),
+            InputText(label: "SENHA", hint: "Digite a sua senha"),
             SizedBox(
               height: 14,
             ),
-            Button(label: "Entrar",),
+            Button(
+              label: "Entrar", 
+              onTap: () {
+
+              },
+            ),
             SizedBox(
               height: 30),
             Button(
               label: "Criar conta",
-              type: ButtonType.outline,
+              type: ButtonType.outline, 
+              onTap: () {
+                print("Criar conta");
+                Navigator.pushNamed(context, "/login/create-account");
+              },
             )
-              
           ],
         ),
       ),

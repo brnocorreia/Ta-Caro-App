@@ -9,12 +9,15 @@ class Button extends StatelessWidget {
 
   final String label;
   final ButtonType type;
-
+  final Function() onTap; 
   
   const Button({
+    Key? key,
+
     required this.label,
     this.type = ButtonType.fill,
-    Key? key, 
+    required this.onTap,
+
   }) : super(key: key);
 
   TextStyle get textStyle {
@@ -54,8 +57,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-      },
+      onTap: onTap,
       child: Container(
         width: double.maxFinite,
         height: 58,
