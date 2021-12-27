@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tacaro_app/modules/feed/feed_page.dart';
+import 'package:tacaro_app/modules/profile/profile_page.dart';
 import 'modules/home/home_page.dart';
 import 'modules/login/login_page.dart';
 import 'modules/login/pages/create account/create_account_page.dart';
@@ -6,12 +8,12 @@ import 'modules/splash/splash_page.dart';
 // import 'shared/models/user_model.dart';
 
 class AppWidget extends StatelessWidget {
-  const AppWidget({ Key? key }) : super(key: key);
+  const AppWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner:false,
+      debugShowCheckedModeBanner: false,
       title: "Tá Caro?",
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -21,8 +23,13 @@ class AppWidget extends StatelessWidget {
         "/splash": (context) => const SplashPage(),
         "/login": (context) => const LoginPage(),
         "/login/create-account": (context) => const CreateAccountPage(),
-        "/home": (context) => HomePage()
-          // user: ModalRoute.of(context)!.settings.arguments as UserModel, 
+        "/home": (context) => HomePage(
+              pages: [
+                FeedPage(),
+                ProfilePage(),
+              ],
+            )
+        // user: ModalRoute.of(context)!.settings.arguments as UserModel,
       },
     );
   }
