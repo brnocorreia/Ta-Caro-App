@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
 
 class CardProduct extends StatelessWidget {
-  const CardProduct({ Key? key }) : super(key: key);
+
+  final bool like;
+
+  const CardProduct({ Key? key, required this.like }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 16.0),
       child: Container(
         width: 230,
         decoration: BoxDecoration(
@@ -20,15 +24,28 @@ class CardProduct extends StatelessWidget {
               leading: CircleAvatar(
                 backgroundColor: AppTheme.colors.background,
                 radius: 30,
-                child: Icon(Icons.settings_accessibility_outlined)),
-              title: Text("Produto"),
-              subtitle: Text("Preço"),
+                child: like ? Icon(FontAwesomeIcons.thumbsUp)
+                : Icon(FontAwesomeIcons.thumbsDown, color: AppTheme.colors.badColor,)),
+              title: Text(
+                "Produto",
+                style: AppTheme.textStyles.titleListTile,
+                ),
+              subtitle: Text(
+                "Preço",
+                style: AppTheme.textStyles.subtitleListTile,
+              ),
             ),
-            Text.rich(TextSpan(
-              text: "Agora\n", children: [
-                TextSpan(text: "R\$ 67,50")
-              ],
-            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
+              child: Text.rich(
+                TextSpan(
+                    text: "Agora\n",
+                    style: AppTheme.textStyles.subtitleListTile,
+                    children: [
+                      TextSpan(
+                          text: "R\$ 67,50", style: AppTheme.textStyles.title),
+                    ]),
+              ),
             )
           ],
         ),

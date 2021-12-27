@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_theme.dart';
 
-abstract class IAppTextStyles{
+abstract class IAppTextStyles {
   TextStyle get title;
   TextStyle get subtitle;
   TextStyle get instructions;
@@ -12,10 +12,12 @@ abstract class IAppTextStyles{
   TextStyle get buttonBackgroundColor;
   TextStyle get buttonBoldTextColor;
   TextStyle get buttonTextColor;
+  TextStyle get titleListTile;
+  TextStyle get subtitleListTile;
+  TextStyle get chart;
 }
 
-class AppTextStyles implements IAppTextStyles{
-
+class AppTextStyles implements IAppTextStyles {
   @override
   TextStyle get buttonBackgroundColor => GoogleFonts.inter(
         fontSize: 14,
@@ -77,5 +79,26 @@ class AppTextStyles implements IAppTextStyles{
         fontSize: 11,
         color: AppTheme.colors.textColor,
         fontWeight: FontWeight.normal,
-  );
+      );
+
+  @override
+  TextStyle get subtitleListTile => GoogleFonts.inter(
+        fontSize: 12,
+        color: AppTheme.colors.textColor,
+        fontWeight: FontWeight.normal,
+      );
+
+  @override
+  TextStyle get titleListTile => GoogleFonts.inter(
+        fontSize: 16,
+        color: AppTheme.colors.textColor,
+        fontWeight: FontWeight.w500,
+      );
+
+  @override
+  TextStyle get chart => GoogleFonts.inter(
+        fontSize: 14,
+        color: AppTheme.colors.textEnabled,
+        fontWeight: FontWeight.bold,
+      );
 }
