@@ -14,8 +14,8 @@ class SupabaseDatabase implements AppDatabase {
   @override
   void init() {
     client = SupabaseClient(
-      const String.fromEnvironment("SUPABASEURL"),
-      const String.fromEnvironment("SUPABASEKEY"),
+      "https://fubgeviroeqmjsnapqdd.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDM3MTg2MywiZXhwIjoxOTU1OTQ3ODYzfQ.Y-ijBGhCzNVjbDSj-MjVRmG9WyKiiIkBtR7evRoSIY8",
     );
   }
 
