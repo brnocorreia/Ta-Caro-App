@@ -19,7 +19,12 @@ class CreateRepositoryImpl implements ICreateRepository {
       "",
     ));
     // final datenew = double.parse(date.replaceAll("/", "-")).toString();
-    DateTime datenew = DateTime.parse(date);
+    var inputFormat = DateFormat('dd/MM/yyyy');
+    var inputDate = inputFormat.parse(date); // <-- dd/MM 24H format
+
+    var outputFormat = DateFormat('yyyy-MM-dd');
+    var outputDate = outputFormat.format(inputDate);
+    DateTime datenew = DateTime.parse(outputDate);
     final dateSanitize = DateFormat('yyyy-MM-dd').format(datenew);
     final response = await database.create(table: "orders", data: {
       "name": name,
