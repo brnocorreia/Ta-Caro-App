@@ -82,10 +82,12 @@ class SupabaseDatabase implements AppDatabase {
 
   @override
   Future<List<Map<String, dynamic>>> getAll(String table) async {
-    final response = await client.from(table).execute();
+    final response = await client.from(table).select("*").execute();
     if (response.error != null) {
       throw Exception(response.error!.message);
     }
-    return response.data;
+    return (response.data as List<dynamic>)
+        .map((e) => e as Map<String, dynamic>)
+        .toList();
   }
 }

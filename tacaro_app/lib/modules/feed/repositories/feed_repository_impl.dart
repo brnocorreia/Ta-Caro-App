@@ -1,14 +1,15 @@
 import 'package:tacaro_app/modules/feed/repositories/feed_repository.dart';
+import 'package:tacaro_app/shared/models/order_model.dart';
 import 'package:tacaro_app/shared/services/app_database.dart';
 
 class FeedRepositoryImpl implements IFeedRepository {
   final AppDatabase database;
 
-  FeedRepositoryImpl(this.database);
+  FeedRepositoryImpl({required this.database});
 
   @override
-  Future<List<Map<String, dynamic>>> getAll() async {
+  Future<List<OrderModel>> getAll() async {
     final response = await database.getAll("orders");
-    return response;
+    return response.map((e) => OrderModel.fromMap(e)).toList();
   }
 }
