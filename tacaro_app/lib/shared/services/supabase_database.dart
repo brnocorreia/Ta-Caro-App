@@ -79,4 +79,13 @@ class SupabaseDatabase implements AppDatabase {
     }
     return true;
   }
+
+  @override
+  Future<List<Map<String, dynamic>>> getAll(String table) async {
+    final response = await client.from(table).execute();
+    if (response.error != null) {
+      throw Exception(response.error!.message);
+    }
+    return response.data;
+  }
 }

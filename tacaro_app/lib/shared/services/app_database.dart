@@ -7,6 +7,8 @@ abstract class AppDatabase {
 
   void init();
 
+  Future<List<Map<String, dynamic>>> getAll(String table);
+
   Future<bool> create({
     required String table,
     required Map<String, dynamic> data,
