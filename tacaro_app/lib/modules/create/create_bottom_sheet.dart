@@ -23,7 +23,19 @@ class _CreateBottomSheetState extends State<CreateBottomSheet> {
   void initState() {
     controller = CreateController(
         repository: CreateRepositoryImpl(database: AppDatabase.instance));
+    controller.state.when(
+      success: (_) {
+        Navigator.pop(context);
+      },
+      orElse: () {},
+    );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
