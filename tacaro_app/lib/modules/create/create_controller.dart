@@ -45,8 +45,9 @@ class CreateController extends ChangeNotifier {
         );
         if (response) {
           update(AppState.success<bool>(response));
+        } else {
+          throw Exception("Não foi possível cadastrar");
         }
-        throw Exception("Não foi possível cadastrar");
       } catch (e) {
         update(AppState.error(e.toString()));
       }

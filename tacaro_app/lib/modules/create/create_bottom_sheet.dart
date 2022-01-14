@@ -5,6 +5,7 @@ import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:tacaro_app/modules/create/create_controller.dart';
 import 'package:tacaro_app/modules/create/respositories/create_repository_impl.dart';
 import 'package:tacaro_app/shared/services/app_database.dart';
+import 'package:tacaro_app/shared/theme/app_theme.dart';
 import 'package:tacaro_app/shared/widgets/button.dart';
 import 'package:tacaro_app/shared/widgets/input_text.dart';
 
@@ -86,11 +87,63 @@ class _CreateBottomSheetState extends State<CreateBottomSheet> {
             SizedBox(
               height: 20,
             ),
-            Button(
-                label: "Adicionar",
-                onTap: () {
-                  controller.create();
-                })
+            AnimatedBuilder(
+              animation: controller,
+              builder: (_, __) => controller.state.when(
+                  loading: () => CircularProgressIndicator(),
+                  error: (message, _) => showModalBottomSheet<void>(
+                        backgroundColor: AppTheme.colors.background,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            height: 250,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 40.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.error,
+                                      color: AppTheme.colors.badColor,
+                                      size: 80.0,
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text(message,
+                                        style: AppTheme
+                                            .textStyles.buttonBoldTextColor),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Button(
+                                      label: 'Fechar',
+                                      type: ButtonType.outline,
+                                      onTap: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                  orElse: () => Button(
+                        label: "Adicionar",
+                        onTap: () {
+                          controller.create();
+                        },
+                      )),
+            )
           ],
         ),
       ),

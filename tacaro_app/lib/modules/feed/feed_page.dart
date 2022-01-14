@@ -37,6 +37,7 @@ class _FeedPageState extends State<FeedPage> {
         builder: (_, __) => controller.state.when(
           success: (value) {
             final orders = value as List<OrderModel>;
+            final products = controller.products;
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +48,7 @@ class _FeedPageState extends State<FeedPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CardChart(
-                        value: 365.0,
+                        value: controller.sumTotal,
                         percent: 0.5,
                       ),
                       SizedBox(
@@ -68,8 +69,9 @@ class _FeedPageState extends State<FeedPage> {
                   width: MediaQuery.of(context).size.width,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
+                      itemCount: products.length,
                       itemBuilder: (context, index) => CardProduct(
-                            like: index % 2 == 0,
+                            product: products[index],
                           )),
                 ),
                 Padding(
