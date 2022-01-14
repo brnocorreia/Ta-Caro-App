@@ -6,6 +6,7 @@ import 'package:tacaro_app/shared/services/app_database.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
 import 'package:tacaro_app/shared/widgets/button.dart';
 import 'package:tacaro_app/shared/widgets/input_text.dart';
+import 'package:change_case/change_case.dart';
 
 class CreateBottomSheet extends StatefulWidget {
   const CreateBottomSheet({Key? key}) : super(key: key);
@@ -56,7 +57,8 @@ class _CreateBottomSheetState extends State<CreateBottomSheet> {
             InputText(
               label: "Produto",
               hint: "Digite um nome",
-              onChanged: (value) => controller.onChanged(name: value),
+              onChanged: (value) =>
+                  controller.onChanged(name: value.toCapitalCase()),
               validator: (value) => value.isNotEmpty ? null : "Digite um nome!",
             ),
             SizedBox(

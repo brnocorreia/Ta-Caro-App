@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tacaro_app/shared/models/product_model.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
+import 'package:change_case/change_case.dart';
 
 class CardProduct extends StatelessWidget {
   final ProductModel product;

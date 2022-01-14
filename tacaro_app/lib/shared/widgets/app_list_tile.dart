@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/shared/models/order_model.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
+import 'package:change_case/change_case.dart';
 
 class AppListTile extends StatelessWidget {
   final OrderModel order;

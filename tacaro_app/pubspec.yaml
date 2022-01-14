@@ -39,6 +39,7 @@ dependencies:
   path_provider: ^2.0.8
   supabase: ^0.2.10
   validators: ^3.0.0
+  change_case: ^1.0.1
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to

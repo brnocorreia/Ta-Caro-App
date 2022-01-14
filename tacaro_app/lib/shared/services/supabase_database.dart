@@ -82,7 +82,8 @@ class SupabaseDatabase implements AppDatabase {
 
   @override
   Future<List<Map<String, dynamic>>> getAll(String table) async {
-    final response = await client.from(table).select("*").execute();
+    final response =
+        await client.from(table).select("*").order("created").execute();
     if (response.error != null) {
       throw Exception(response.error!.message);
     }
