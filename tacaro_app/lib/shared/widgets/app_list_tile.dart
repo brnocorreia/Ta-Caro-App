@@ -33,7 +33,7 @@ class AppListTile extends StatelessWidget {
             style: AppTheme.textStyles.titleListTile,
           ),
           subtitle: Text(
-            "R\$ ${order.price.toStringAsFixed(2)}",
+            "R\$ ${order.price.toStringAsFixed(2).replaceAll(".", ",")}",
             style: AppTheme.textStyles.subtitleListTile,
           ),
           trailing: PopupMenuButton(

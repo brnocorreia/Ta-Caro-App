@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/shared/models/order_model.dart';
@@ -39,7 +39,6 @@ class FeedController extends ChangeNotifier {
       final index =
           products.indexWhere((element) => element.name == product.name);
       if (index != -1) {
-        final index = products.indexWhere((element) => element == product);
         final currentProduct = products[index];
         products[index] = currentProduct.copyWith(lastPrice: item.price);
       } else {

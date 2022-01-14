@@ -35,7 +35,7 @@ class CardProduct extends StatelessWidget {
                 style: AppTheme.textStyles.titleListTile,
               ),
               subtitle: Text(
-                "Estava R\$ ${product.lastPrice}",
+                "Estava R\$ ${product.lastPrice.toStringAsFixed(2).replaceAll(".", ",")}",
                 style: AppTheme.textStyles.subtitleListTile,
               ),
             ),
@@ -47,7 +47,8 @@ class CardProduct extends StatelessWidget {
                     style: AppTheme.textStyles.subtitleListTile,
                     children: [
                       TextSpan(
-                        text: "R\$ ${product.currentPrice}",
+                        text:
+                            "R\$ ${product.currentPrice.toStringAsFixed(2).replaceAll(".", ",")}",
                         style: AppTheme.textStyles.title,
                       ),
                     ]),

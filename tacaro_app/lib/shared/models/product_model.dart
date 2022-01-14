@@ -33,8 +33,8 @@ class ProductModel {
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
       name: map['name'] ?? '',
-      lastPrice: map['lastPrice']?.toDouble() ?? 0.0,
-      currentPrice: map['currentPrice']?.toDouble() ?? 0.0,
+      lastPrice: map['lastPrice']?.toDouble() ?? 0.00,
+      currentPrice: map['currentPrice']?.toDouble() ?? 0.00,
     );
   }
 

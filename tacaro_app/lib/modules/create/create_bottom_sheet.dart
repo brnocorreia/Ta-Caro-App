@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:tacaro_app/modules/create/create_controller.dart';
 import 'package:tacaro_app/modules/create/respositories/create_repository_impl.dart';
 import 'package:tacaro_app/shared/services/app_database.dart';
@@ -23,12 +21,14 @@ class _CreateBottomSheetState extends State<CreateBottomSheet> {
   void initState() {
     controller = CreateController(
         repository: CreateRepositoryImpl(database: AppDatabase.instance));
-    controller.state.when(
-      success: (_) {
-        Navigator.pop(context);
-      },
-      orElse: () {},
-    );
+    controller.addListener(() {
+      controller.state.when(
+        success: (_) {
+          Navigator.pop(context);
+        },
+        orElse: () {},
+      );
+    });
     super.initState();
   }
 

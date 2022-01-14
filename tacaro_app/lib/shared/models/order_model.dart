@@ -41,7 +41,7 @@ class OrderModel {
       id: map['id'] ?? '',
       created: map['created'] ?? '',
       name: map['name'] ?? '',
-      price: map['price']?.toDouble() ?? 0.0,
+      price: double.tryParse(map['price'].toString()) ?? 0.00,
     );
   }
 
