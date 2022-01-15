@@ -80,18 +80,21 @@ class SupabaseDatabase implements AppDatabase {
     return true;
   }
 
-  @override
-  Future<bool> delete({required String table, required String id}) async {
-    final response = client.from(table).delete().eq("id", String);
-    return true;
-  }
+  // @override
+  // Future<bool> delete({required String table, required String id}) async {
+  //   final response = client.from(table).delete().eq("id", String);
+  //   if (response.error != null) {
+  //     throw Exception(response.error!.message);
+  //   }
+  //   return true;
+  // }
 
-  @override
-  Future<bool> update(
-      {required String table, required Map<String, dynamic> data}) async {
-    final response = client.from(table).update(data).eq("id", String);
-    return true;
-  }
+  // @override
+  // Future<bool> update(
+  //     {required String table, required Map<String, dynamic> data}) async {
+  //   final response = client.from(table).update(data).eq("name", order.name);
+  //   return true;
+  // }
 
   @override
   Future<List<Map<String, dynamic>>> getAll(String table) async {

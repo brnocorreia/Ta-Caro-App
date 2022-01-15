@@ -31,6 +31,16 @@ class FeedController extends ChangeNotifier {
     return sum;
   }
 
+  bool get isGood {
+    var isGood = false;
+    for (var item in products) {
+      if (item.currentPrice < item.lastPrice) {
+        isGood = true;
+      }
+    }
+    return isGood;
+  }
+
   List<ProductModel> get products {
     final products = <ProductModel>[];
     for (var item in orders) {
