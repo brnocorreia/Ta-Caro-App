@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/shared/models/order_model.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
-import 'package:change_case/change_case.dart';
 
 class AppListTile extends StatelessWidget {
   final OrderModel order;
@@ -25,7 +24,7 @@ class AppListTile extends StatelessWidget {
             backgroundColor: AppTheme.colors.background,
             radius: 30,
             child: Text(
-              order.created,
+              order.created.split("-").sublist(1).reversed.join("/"),
               style: AppTheme.textStyles.label,
             ),
           ),

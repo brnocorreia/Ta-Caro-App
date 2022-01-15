@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:tacaro_app/modules/feed/feed_controller.dart';
 import 'package:tacaro_app/modules/feed/repositories/feed_repository_impl.dart';
 import 'package:tacaro_app/shared/models/order_model.dart';
@@ -49,7 +50,7 @@ class _FeedPageState extends State<FeedPage> {
                     children: [
                       CardChart(
                         value: controller.sumTotal,
-                        percent: 0.5,
+                        percent: controller.calcChart(products),
                       ),
                       SizedBox(
                         height: 27,

@@ -48,6 +48,17 @@ class FeedController extends ChangeNotifier {
     return products;
   }
 
+  double calcChart(List<ProductModel> products) {
+    var up = 0.0;
+    var total = orders.length;
+    for (var item in products) {
+      if (item.currentPrice < item.lastPrice) {
+        up += 1;
+      }
+    }
+    return up / total;
+  }
+
   Future<void> getData() async {
     try {
       update(AppState.loading());

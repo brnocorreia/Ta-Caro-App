@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tacaro_app/modules/feed/feed_page.dart';
 import 'package:tacaro_app/modules/profile/profile_page.dart';
+import 'package:tacaro_app/shared/models/user_model.dart';
 import 'modules/home/home_page.dart';
 import 'modules/login/login_page.dart';
 import 'modules/login/pages/create account/create_account_page.dart';
@@ -18,7 +19,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      initialRoute: "/home",
+      initialRoute: "/splash",
       routes: {
         "/splash": (context) => const SplashPage(),
         "/login": (context) => const LoginPage(),
@@ -28,6 +29,7 @@ class AppWidget extends StatelessWidget {
                 FeedPage(),
                 ProfilePage(),
               ],
+              user: ModalRoute.of(context)!.settings.arguments as UserModel,
             )
         // user: ModalRoute.of(context)!.settings.arguments as UserModel,
       },

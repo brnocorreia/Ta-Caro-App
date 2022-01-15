@@ -12,7 +12,6 @@ class InputText extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final TextCapitalization? textCapitalization;
-  final bool? autocorrect;
 
   const InputText({
     required this.label,
@@ -24,7 +23,6 @@ class InputText extends StatelessWidget {
     this.inputFormatters,
     this.keyboardType,
     this.textCapitalization,
-    this.autocorrect,
   }) : super(key: key);
 
   @override

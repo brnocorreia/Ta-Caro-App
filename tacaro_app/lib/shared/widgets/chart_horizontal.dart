@@ -16,8 +16,8 @@ class ChartHorizontal extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               gradient: LinearGradient(colors: [
-                AppTheme.colors.badColor,
                 AppTheme.colors.primary,
+                AppTheme.colors.badColor,
               ], stops: [
                 percent,
                 0.0
@@ -29,12 +29,12 @@ class ChartHorizontal extends StatelessWidget {
               children: [
                 if (percent > 0 && percent <= 1)
                   Text(
-                    "${(percent * 100).ceil()}%",
+                    "${(percent * 100).toStringAsPrecision(2)}%",
                     style: AppTheme.textStyles.chart,
                   ),
                 if ((1 - percent) > 0)
                   Text(
-                    "${((1 - percent) * 100).ceil()}%",
+                    "${((1 - percent) * 100).toStringAsPrecision(2)}%",
                     style: AppTheme.textStyles.chart,
                   ),
               ],
@@ -58,13 +58,13 @@ class ChartHorizontal extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: AppTheme.colors.badColor,
+                  backgroundColor: AppTheme.colors.primary,
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  "Ruim",
+                  "Bom",
                   style: AppTheme.textStyles.hint,
                 ),
               ],
@@ -73,13 +73,13 @@ class ChartHorizontal extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 10,
-                  backgroundColor: AppTheme.colors.primary,
+                  backgroundColor: AppTheme.colors.badColor,
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  "Bom",
+                  "Ruim",
                   style: AppTheme.textStyles.hint,
                 ),
               ],
