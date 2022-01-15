@@ -6,14 +6,14 @@ import 'package:tacaro_app/shared/widgets/app_bottom_navigator.dart';
 // import 'package:tacaro_app/shared/models/user_model.dart';
 
 class HomePage extends StatefulWidget {
-  final UserModel user;
+  // final UserModel user;
 
   final List<Widget> pages;
 
   const HomePage({
     Key? key,
     required this.pages,
-    required this.user,
+    // required this.user,
   }) : super(key: key);
 
   @override
@@ -47,26 +47,27 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppTheme.colors.background,
-        body: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: [
-              Container(
-                key: UniqueKey(),
-                child: List.from(pages)[currentIndex],
+      backgroundColor: AppTheme.colors.background,
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: [
+            Container(
+              key: UniqueKey(),
+              child: List.from(pages)[currentIndex],
+            ),
+            Positioned(
+              bottom: 14,
+              left: 26,
+              right: 26,
+              child: AppBottomNavigator(
+                currentIndex: currentIndex,
+                onChanged: changeIndex,
               ),
-              Positioned(
-                bottom: 14,
-                left: 26,
-                right: 26,
-                child: AppBottomNavigator(
-                  currentIndex: currentIndex,
-                  onChanged: changeIndex,
-                ),
-              )
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
