@@ -1,18 +1,18 @@
-// ignore_for_file: unused_element
-
 import 'package:flutter/material.dart';
-import 'package:tacaro_app/modules/create/repositories/create_repository.dart';
+
 import 'package:tacaro_app/shared/utils/app_state.dart';
 
-class CreateController extends ChangeNotifier {
-  final ICreateRepository repository;
+import 'repositories/update_repository.dart';
+
+class UpdateController extends ChangeNotifier {
+  final IUpdateRepository repository;
 
   AppState state = AppState.empty();
   final formKey = GlobalKey<FormState>();
   String _name = "";
   String _price = "";
   String _date = "";
-  CreateController({required this.repository});
+  UpdateController({required this.repository});
 
   void onChanged({String? name, String? price, String? date}) {
     _name = name ?? _name;
@@ -34,11 +34,11 @@ class CreateController extends ChangeNotifier {
     return false;
   }
 
-  Future<void> create() async {
+  Future<void> updater() async {
     if (validate()) {
       try {
         update(AppState.loading());
-        final response = await repository.create(
+        final response = await repository.updater(
           name: _name,
           price: _price,
           date: _date,
@@ -46,7 +46,7 @@ class CreateController extends ChangeNotifier {
         if (response) {
           update(AppState.success<bool>(response));
         } else {
-          throw Exception("Não foi possível cadastrar");
+          throw Exception("Não foi possível atualizar");
         }
       } catch (e) {
         update(AppState.error(e.toString()));

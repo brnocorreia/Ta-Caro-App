@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:tacaro_app/modules/create/create_controller.dart';
-import 'package:tacaro_app/modules/create/repositories/create_repository_impl.dart';
+import 'package:tacaro_app/modules/update/update_controller.dart';
 import 'package:tacaro_app/shared/services/app_database.dart';
 import 'package:tacaro_app/shared/theme/app_theme.dart';
 import 'package:tacaro_app/shared/widgets/button.dart';
 import 'package:tacaro_app/shared/widgets/input_text.dart';
 
-class CreateBottomSheet extends StatefulWidget {
-  const CreateBottomSheet({Key? key}) : super(key: key);
+import 'repositories/update_repository_impl.dart';
+
+class UpdateBottomSheet extends StatefulWidget {
+  const UpdateBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<CreateBottomSheet> createState() => _CreateBottomSheetState();
+  State<UpdateBottomSheet> createState() => _UpdateBottomSheetState();
 }
 
-class _CreateBottomSheetState extends State<CreateBottomSheet> {
-  late final CreateController controller;
+class _UpdateBottomSheetState extends State<UpdateBottomSheet> {
+  late final UpdateController controller;
 
   @override
   void initState() {
-    controller = CreateController(
-        repository: CreateRepositoryImpl(database: AppDatabase.instance));
+    controller = UpdateController(
+        repository: UpdateRepositoryImpl(database: AppDatabase.instance));
     controller.addListener(() {
       controller.state.when(
         success: (_) {
@@ -50,6 +51,7 @@ class _CreateBottomSheetState extends State<CreateBottomSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text("Editar"),
             SizedBox(
               height: 32,
             ),
@@ -152,7 +154,7 @@ class _CreateBottomSheetState extends State<CreateBottomSheet> {
                   orElse: () => Button(
                         label: "Adicionar",
                         onTap: () {
-                          controller.create();
+                          controller.updater();
                         },
                       )),
             )
