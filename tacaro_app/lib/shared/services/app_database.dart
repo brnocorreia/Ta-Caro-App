@@ -20,10 +20,10 @@ abstract class AppDatabase {
     required Map<String, dynamic> data,
   });
 
-  // Future<bool> delete({
-  //   required String table,
-  //   required String id,
-  // });
+  Future<bool> delete({
+    required String table,
+    required String id,
+  });
 
   Future<UserModel> createUser(UserModel user);
   Future<UserModel> getUser(String id);

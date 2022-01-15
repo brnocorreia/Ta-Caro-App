@@ -113,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  date_picker_timeline:
+    dependency: "direct main"
+    description:
+      name: date_picker_timeline
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.3"
   fake_async:
     dependency: transitive
     description:
@@ -358,7 +365,7 @@ packages:
       name: realtime_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.13"
+    version: "0.1.14"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -405,7 +412,7 @@ packages:
       name: supabase
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.12"
+    version: "0.2.13"
   term_glyph:
     dependency: transitive
     description:
