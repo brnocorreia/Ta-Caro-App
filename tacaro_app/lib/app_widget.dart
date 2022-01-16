@@ -25,7 +25,7 @@ class _AppWidgetState extends State<AppWidget> {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      initialRoute: "/home",
+      initialRoute: "/splash",
       routes: {
         "/splash": (context) => const SplashPage(),
         "/login": (context) => const LoginPage(),
@@ -35,7 +35,7 @@ class _AppWidgetState extends State<AppWidget> {
                 FeedPage(),
                 ProfilePage(),
               ],
-              // user: ModalRoute.of(context)!.settings.arguments as UserModel,
+              user: ModalRoute.of(context)!.settings.arguments as UserModel,
             )
       },
     );

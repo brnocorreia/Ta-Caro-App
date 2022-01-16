@@ -6,14 +6,14 @@ import 'package:tacaro_app/shared/widgets/app_bottom_navigator.dart';
 // import 'package:tacaro_app/shared/models/user_model.dart';
 
 class HomePage extends StatefulWidget {
-  // final UserModel user;
+  final UserModel user;
 
   final List<Widget> pages;
 
   const HomePage({
     Key? key,
     required this.pages,
-    // required this.user,
+    required this.user,
   }) : super(key: key);
 
   @override
